@@ -1,0 +1,39 @@
+<div class="container">
+    <div *ngIf="film">
+        <h1>{{ film.title }}</h1>
+        <p>Episode: {{ film.episode_id }}</p>
+        <p id="crawl">Opening crawl: {{ film.opening_crawl }}</p>
+        <p>Producer: {{ film.producer }}</p>
+        <p>Release date: {{ film.release_date }}</p>
+        <p>Characters: </p>
+        <div *ngFor="let character of people">
+            <a [routerLink]="['/people/', character.url.substring(29, character.url.length - 1)]">
+                {{ character.name }}
+            </a>
+        </div>
+        <p>Planets: </p>
+        <div *ngFor="let planet of planets">
+            <a [routerLink]="['/planets/', planet.url.substring(30, planet.url.length - 1)]">
+                {{ planet.name }}
+            </a>
+        </div>
+        <p>Starships: </p>
+        <div *ngFor="let starship of starships">
+            <a [routerLink]="['/starships/', starship.url.substring(32, starship.url.length - 1)]">
+                {{ starship.name }}
+            </a>
+        </div>
+        <p>Vehicles: </p>
+        <div *ngFor="let vehicle of vehicles">
+            <a [routerLink]="['/vehicles/', vehicle.url.substring(31, vehicle.url.length - 1)]">
+                {{ vehicle.name }}
+            </a>
+        </div>
+        <p>Species: </p>
+        <div *ngFor="let spec of species">
+            <a [routerLink]="['/species/', spec.url.substring(30, spec.url.length - 1)]">
+                {{ spec.name }}
+            </a>
+        </div>
+    </div>
+</div>

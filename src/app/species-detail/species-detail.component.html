@@ -1,0 +1,31 @@
+<div class="container">
+    <div *ngIf="spec">
+        <h1>{{ spec.name }}</h1>
+        <p>Classification: {{spec.classification}}</p>
+        <p>Designation: {{spec.designation}}</p>
+        <p>Average height: {{spec.average_height}}</p>
+        <p>Skin colors: {{spec.skin_colors}}</p>
+        <p>Hair colors: {{spec.hair_colors}}</p>
+        <p>Eye colors: {{spec.eye_colors}}</p>
+        <p>Average lifespan: {{spec.average_lifespan}}</p>
+        <div *ngIf="homeworld">
+            <p>Homeworld: </p>
+            <a [routerLink]="['/planets/', homeworld.url.substring(30, homeworld.url.length - 1)]">
+                {{ homeworld.name }}
+            </a>
+        </div>
+        <p>Language: {{spec.language}}</p>
+        <p>Films: </p>
+        <div *ngFor="let f of film">
+            <a [routerLink]="['/films/', f.url.substring(28, f.url.length - 1)]">
+                {{ f.title }}
+            </a>
+        </div>
+        <p>Characters: </p>
+        <div *ngFor="let p of people">
+            <a [routerLink]="['/people/', p.url.substring(29, p.url.length - 1)]">
+                {{ p.name }}
+            </a>
+        </div>
+    </div>
+</div>

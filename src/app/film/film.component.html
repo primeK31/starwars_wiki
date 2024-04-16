@@ -1,0 +1,7 @@
+<div class="back">
+    <div class="container" *ngFor="let film of films; let i = index">
+        <div class="elem" [routerLink]="['/films', i + 1]">
+        {{ film.title }}
+        </div>
+    </div>
+</div>

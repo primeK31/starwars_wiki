@@ -1,0 +1,17 @@
+<div class="container">
+    <h2>Planets</h2> 
+    <input type="text" [(ngModel)]="query" placeholder="Type planet's name">
+        <button (click)="search()">Search</button>
+
+    <div *ngIf="planets$ | async as planets">
+        <div *ngFor="let planet of planets.results;">
+            <a [routerLink]="['/planets/', planet.url.substring(30, planet.url.length - 1)]">
+            {{ planet.name }}
+            </a>
+        </div>
+    </div>
+
+    <button (click)="prevPage()">Prev</button>
+    {{page}}
+    <button (click)="nextPage()">Next</button>
+</div>

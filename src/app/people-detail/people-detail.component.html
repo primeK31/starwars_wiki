@@ -1,0 +1,48 @@
+<div class="container">
+    <div *ngIf="people">
+        <h1>{{ people.name }}</h1>
+        <p>Height: {{ people.height }}</p>
+        <p>Mass: {{ people.mass }}</p>
+        <p>Hair color: {{people.hair_color}}</p>
+        <p>Skin color: {{people.skin_color}}</p>
+        <p>Eye color: {{people.eye_color}}</p>
+        <p>Birth year: {{people.birth_year}}</p>
+        <p>Gender: {{people.gender}}</p>
+        <div *ngIf="homeworld">
+            <p>Homeworld: </p>
+            <a [routerLink]="['/planets/', homeworld.url.substring(30, homeworld.url.length - 1)]">
+                {{ homeworld.name }}
+            </a>
+        </div>
+        <p>Films: </p>
+        <div *ngFor="let film of films">
+            <a [routerLink]="['/films/', film.url.substring(28, film.url.length - 1)]">
+                {{ film.title }}
+            </a>
+        </div>
+        <div *ngIf="species.length > 0">
+            <p>Species: </p>
+            <div *ngFor="let spec of species">
+                <a [routerLink]="['/species/', spec.url.substring(30, spec.url.length - 1)]">
+                    {{ spec.name }}
+                </a>
+            </div>
+        </div>
+        <div *ngIf="starships.length > 0">
+            <p>Starships: </p>
+            <div *ngFor="let starship of starships">
+                <a [routerLink]="['/starships/', starship.url.substring(32, starship.url.length - 1)]">
+                    {{ starship.name }}
+                </a>
+            </div>
+        </div>
+        <div *ngIf="vehicles.length > 0">
+            <p>Vehicles: </p>
+            <div *ngFor="let vehicle of vehicles">
+                <a [routerLink]="['/vehicles/', vehicle.url.substring(31, vehicle.url.length - 1)]">
+                    {{ vehicle.name }}
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

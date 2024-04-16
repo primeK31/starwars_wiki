@@ -1,0 +1,28 @@
+.container {
+    text-align: center;
+    padding-top: 35px;
+}
+
+.elem {
+    color: rgba(199, 199, 199, 0.921);
+    background-color: rgb(48, 48, 50);
+    margin: 0 auto;
+    width: 200px;
+    height: 50px;
+    border: 2px solid black;
+    border-radius: 10px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.elem:hover {
+    color: rgb(255, 255, 255);
+    background-color: rgb(48, 48, 50);
+    margin: 0 auto; 
+    width: 202px;
+    height: 52px;
+    border: 2px solid black;
+    border-radius: 10px;
+}
