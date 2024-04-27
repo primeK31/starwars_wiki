@@ -22,9 +22,8 @@ export class StarshipsDetailComponent {
       if (params.get('id')) {
         const postId = Number(params.get('id'));
         this.filmService.getStarshipById(postId).subscribe((starship) => {
-          this.starship = starship;
+          this.starship = starship.result.properties;
           this.getPeople();
-          this.getFilms();
           console.log(starship);
         });
       }
@@ -34,15 +33,7 @@ export class StarshipsDetailComponent {
     this.starship.pilots.forEach((url: string) => {
       this.http.get(url)
         .subscribe((data: any) => {
-          this.people.push(data);
-        });
-      });
-  }
-  getFilms(): void {
-    this.starship.films.forEach((url: string) => {
-      this.http.get(url)
-        .subscribe((data: any) => {
-          this.films.push(data);
+          this.people.push(data.result.properties);
         });
       });
   }

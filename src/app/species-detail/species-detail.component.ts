@@ -23,31 +23,22 @@ export class SpeciesDetailComponent {
       if (params.get('id')) {
         const postId = Number(params.get('id'));
         this.filmService.getSpeciesById(postId).subscribe((spec) => {
-          this.spec = spec;
-          this.http.get(spec.homeworld).subscribe((data: any) => {
-            this.homeworld = data;
+          this.spec = spec.result.properties;
+          this.http.get(this.spec.homeworld).subscribe((data: any) => {
+            this.homeworld = data.result.properties;
           });
-          this.getFilms();
           this.getPeople();
           console.log(spec);
         });
       }
     });
   }
-  getFilms(): void {
-    this.spec.films.forEach((url: string) => {
-      this.http.get(url)
-        .subscribe((data: any) => {
-          this.film.push(data);
-        });
-      });
-  }
 
   getPeople(): void {
     this.spec.people.forEach((url: string) => {
       this.http.get(url)
         .subscribe((data: any) => {
-          this.people.push(data);
+          this.people.push(data.result.properties);
         });
       });
   }

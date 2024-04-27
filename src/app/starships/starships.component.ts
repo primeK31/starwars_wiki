@@ -18,9 +18,8 @@ export class StarshipsComponent {
   starships$: Observable<any> | undefined;
   query = '';
   page = 1;
-  searchQuery = 'https://swapi.dev/api/starships/?search='
   baseUrl = "";
-  url = "https://swapi.dev/api/starships/?page=1";
+  url = "https://swapi.tech/api/starships/?page=1&limit=10";
   characters$: Observable<any> | undefined;
   constructor(private filmService: FilmService, private http: HttpClient)
   { }
@@ -34,9 +33,9 @@ export class StarshipsComponent {
   }
 
   search(): void {
-    this.searchQuery = 'https://swapi.dev/api/starships/?search=';
-    this.searchQuery += this.query;
-    this.starships$ = this.http.get(this.searchQuery);
+    this.filmService.searchStarships(this.query).subscribe((data) => {
+      this.starships = data.result;
+    })
   }
   
   nextPage() {

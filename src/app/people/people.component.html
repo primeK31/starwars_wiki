@@ -1,13 +1,25 @@
 <div class="container">
+    <h2>People</h2>
     <input type="text" [(ngModel)]="query" placeholder="Type character's name">
         <button class="btn btn-primary" (click)="search()">Search</button>
 
-        <h2>People</h2>
-    <div *ngIf="people$ | async as people">
-        <div *ngFor="let person of people.results;">
-            <a [routerLink]="['/people/', person.url.substring(29, person.url.length - 1)]">
-            {{ person.name }}
-            </a>
+    <div *ngIf="query.length == 0">
+        <div *ngIf="people$ | async as people">
+            <div *ngFor="let person of people.results">
+                <a [routerLink]="['/people/', person.uid]">
+                {{ person.name }}
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="query.length > 0">
+        <div *ngIf="people">
+            <div *ngFor="let person of people">
+                <a [routerLink]="['/people/', person.uid]">
+                {{ person.properties.name }}
+                </a>
+            </div>
         </div>
     </div>
 

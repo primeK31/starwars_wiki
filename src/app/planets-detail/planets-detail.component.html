@@ -9,19 +9,5 @@
         <p>Terrain: {{planet.terrain}}</p>
         <p>Surface water: {{planet.surface_water}}</p>
         <p>Population: {{planet.population}}</p>
-        <p>Films: </p>
-        <div *ngFor="let film of films">
-            <a [routerLink]="['/films/', film.url.substring(28, film.url.length - 1)]">
-                {{ film.title }}
-            </a>
-        </div>
-        <div *ngIf="people.length > 0">
-            <p>Residents: </p>
-            <div *ngFor="let person of people">
-                <a [routerLink]="['/people/', person.url.substring(29, person.url.length - 1)]">
-                    {{ person.name }}
-                </a>
-            </div>
-        </div>
     </div>
 </div>

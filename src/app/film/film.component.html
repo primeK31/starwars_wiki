@@ -1,7 +1,7 @@
 <div class="back">
-    <div class="container" *ngFor="let film of films; let i = index">
-        <div class="elem" [routerLink]="['/films', i + 1]">
-        {{ film.title }}
+    <div class="container" *ngFor="let film of films">
+        <div class="elem" [routerLink]="['/films', film.uid]">
+        {{ film.properties.title }}
         </div>
     </div>
 </div>

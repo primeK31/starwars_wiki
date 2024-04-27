@@ -3,13 +3,25 @@
     <input type="text" [(ngModel)]="query" placeholder="Type species's name">
         <button (click)="search()">Search</button>
 
-    <div *ngIf="species$ | async as species">
-        <div *ngFor="let spec of species.results;">
-            <a [routerLink]="['/species/', spec.url.substring(30, spec.url.length - 1)]">
-            {{ spec.name }}
-            </a>
+        <div *ngIf="query.length == 0">
+            <div *ngIf="species$ | async as species">
+                <div *ngFor="let spec of species.results">
+                    <a [routerLink]="['/species/', spec.uid]">
+                    {{ spec.name }}
+                    </a>
+                </div>
+            </div>
         </div>
-    </div>
+    
+        <div *ngIf="query.length > 0">
+            <div *ngIf="species">
+                <div *ngFor="let spec of species">
+                    <a [routerLink]="['/species/', spec.uid]">
+                    {{ spec.properties.name }}
+                    </a>
+                </div>
+            </div>
+        </div>
 
     <button (click)="prevPage()">Prev</button>
     {{page}}

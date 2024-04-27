@@ -22,7 +22,7 @@ export class VehiclesDetailComponent {
       if (params.get('id')) {
         const postId = Number(params.get('id'));
         this.filmService.getVehicleById(postId).subscribe((vehicle) => {
-          this.vehicle = vehicle;
+          this.vehicle = vehicle.result.properties;
           this.getPeople();
           this.getFilms();
           console.log(vehicle);
@@ -34,7 +34,7 @@ export class VehiclesDetailComponent {
     this.vehicle.pilots.forEach((url: string) => {
       this.http.get(url)
         .subscribe((data: any) => {
-          this.people.push(data);
+          this.people.push(data.result.properties);
         });
       });
   }
@@ -42,7 +42,7 @@ export class VehiclesDetailComponent {
     this.vehicle.films.forEach((url: string) => {
       this.http.get(url)
         .subscribe((data: any) => {
-          this.films.push(data);
+          this.films.push(data.result.properties);
         });
       });
   }

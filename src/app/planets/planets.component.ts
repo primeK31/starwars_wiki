@@ -18,9 +18,8 @@ export class PlanetsComponent {
   planets$: Observable<any> | undefined;
   query = '';
   page = 1;
-  searchQuery = 'https://swapi.dev/api/planets/?search='
   baseUrl = "";
-  url = "https://swapi.dev/api/planets/?page=1";
+  url = "https://swapi.tech/api/planets/?page=1&limit=10";
   characters$: Observable<any> | undefined;
   constructor(private filmService: FilmService, private http: HttpClient)
   { }
@@ -35,9 +34,9 @@ export class PlanetsComponent {
   }
 
   search(): void {
-    this.searchQuery = 'https://swapi.dev/api/planets/?search=';
-    this.searchQuery += this.query;
-    this.planets$ = this.http.get(this.searchQuery);
+    this.filmService.searchPlanets(this.query).subscribe((data) => {
+      this.planets = data.result;
+    })
   }
 
 

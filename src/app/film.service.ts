@@ -7,7 +7,7 @@ import { Observable, map, of, tap, finalize } from 'rxjs';
 })
 export class FilmService {
 
-  baseUrl = "https://swapi.dev/api/"
+  baseUrl = "https://swapi.tech/api"
 
   constructor(private http: HttpClient) {  }
 
@@ -61,6 +61,26 @@ export class FilmService {
 
   getVehicleById(id: number):Observable<any> {
     return this.http.get(`${this.baseUrl}/vehicles/${id}/`);
+  }
+
+  searchPeople(name: string):Observable<any> {
+    return this.http.get(`${this.baseUrl}/people/?name=${name}`);
+  }
+
+  searchPlanets(name: string):Observable<any> {
+    return this.http.get(`${this.baseUrl}/planets/?name=${name}`);
+  }
+
+  searchSpecies(name: string):Observable<any> {
+    return this.http.get(`${this.baseUrl}/species/?name=${name}`);
+  }
+
+  searchStarships(name: string):Observable<any> {
+    return this.http.get(`${this.baseUrl}/starships/?name=${name}`);
+  }
+
+  searchVehicles(name: string):Observable<any> {
+    return this.http.get(`${this.baseUrl}/vehicles/?name=${name}`);
   }
   
 }

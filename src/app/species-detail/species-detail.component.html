@@ -10,20 +10,14 @@
         <p>Average lifespan: {{spec.average_lifespan}}</p>
         <div *ngIf="homeworld">
             <p>Homeworld: </p>
-            <a [routerLink]="['/planets/', homeworld.url.substring(30, homeworld.url.length - 1)]">
+            <a [routerLink]="['/planets/', homeworld.url.substring(34, homeworld.url.length)]">
                 {{ homeworld.name }}
             </a>
         </div>
         <p>Language: {{spec.language}}</p>
-        <p>Films: </p>
-        <div *ngFor="let f of film">
-            <a [routerLink]="['/films/', f.url.substring(28, f.url.length - 1)]">
-                {{ f.title }}
-            </a>
-        </div>
         <p>Characters: </p>
         <div *ngFor="let p of people">
-            <a [routerLink]="['/people/', p.url.substring(29, p.url.length - 1)]">
+            <a [routerLink]="['/people/', p.url.substring(34, p.url.length)]">
                 {{ p.name }}
             </a>
         </div>

@@ -18,9 +18,8 @@ export class PeopleComponent {
   people$: Observable<any> | undefined;
   query = '';
   page = 1;
-  searchQuery = 'https://swapi.dev/api/people/?search='
   baseUrl = "";
-  url = "https://swapi.dev/api/people/?page=1";
+  url = "https://swapi.tech/api/people/?page=1&limit=10";
   characters$: Observable<any> | undefined;
   constructor(private filmService: FilmService, private http: HttpClient)
   { }
@@ -34,9 +33,9 @@ export class PeopleComponent {
   }
 
   search(): void {
-    this.searchQuery = 'https://swapi.dev/api/people/?search=';
-    this.searchQuery += this.query;
-    this.people$ = this.http.get(this.searchQuery);
+    this.filmService.searchPeople(this.query).subscribe((data) => {
+      this.people = data.result;
+    })
   }
 
 

@@ -22,28 +22,10 @@ export class PlanetsDetailComponent {
       if (params.get('id')) {
         const postId = Number(params.get('id'));
         this.filmService.getPlanetById(postId).subscribe((film) => {
-          this.planet = film;
-          this.getPeople();
-          this.getFilms();
+          this.planet = film.result.properties;
           console.log(film);
         });
       }
     });
-  }
-  getPeople(): void {
-    this.planet.residents.forEach((url: string) => {
-      this.http.get(url)
-        .subscribe((data: any) => {
-          this.people.push(data);
-        });
-      });
-  }
-  getFilms(): void {
-    this.planet.films.forEach((url: string) => {
-      this.http.get(url)
-        .subscribe((data: any) => {
-          this.films.push(data);
-        });
-      });
   }
 }

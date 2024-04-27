@@ -19,7 +19,7 @@ export class FilmComponent {
   { }
   ngOnInit():void {
     this.filmService.getFilms().subscribe((data) => {
-      this.films = data.results; 
+      this.films = data.result; 
       console.log(this.films);
     });
   }

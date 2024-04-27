@@ -25,51 +25,14 @@ export class PeopleDetailComponent {
     this.route.paramMap.subscribe((params) => {
       if (params.get('id')) {
         const postId = Number(params.get('id'));
-        this.filmService.getPeopleById(postId).subscribe((people) => {
-          this.people = people;
-          this.http.get(people.homeworld).subscribe((data: any) => {
-            this.homeworld = data;
+        this.filmService.getPeopleById(postId).subscribe((data) => {
+          this.people = data.result.properties;
+          this.http.get(this.people.homeworld).subscribe((data: any) => {
+            this.homeworld = data.result.properties;
           });
-          this.getFilms();
-          this.getSpecies();
-          this.getVehicles();
-          this.getStarships();
           console.log(this.people);
         });
       }
     });
-  }
-
-  getFilms(): void {
-    this.people.films.forEach((url: string) => {
-      this.http.get(url)
-        .subscribe((data: any) => {
-          this.films.push(data);
-        });
-      });
-  }
-  getSpecies(): void {
-    this.people.species.forEach((url: string) => {
-      this.http.get(url)
-        .subscribe((data: any) => {
-          this.species.push(data);
-        });
-      });
-  }
-  getVehicles(): void {
-    this.people.vehicles.forEach((url: string) => {
-      this.http.get(url)
-        .subscribe((data: any) => {
-          this.vehicles.push(data);
-        });
-      });
-  }
-  getStarships(): void {
-    this.people.starships.forEach((url: string) => {
-      this.http.get(url)
-        .subscribe((data: any) => {
-          this.starships.push(data);
-        });
-      });
   }
 }

@@ -17,10 +17,9 @@ import { FormsModule } from '@angular/forms';
 })
 export class VehiclesComponent {
   vehicles: any[] = [];
-  searchQuery = 'https://swapi.dev/api/vehicles/?search='
   baseUrl = "";
   query = "";
-  url = "https://swapi.dev/api/vehicles/?page=1";
+  url = "https://swapi.tech/api/vehicles/?page=1&limit=10";
   page = 1;
   vehicles$: Observable<any> | undefined;
   constructor(private filmService: FilmService, private http: HttpClient)
@@ -28,16 +27,16 @@ export class VehiclesComponent {
   ngOnInit():void {
     this.filmService.getVehicles().subscribe((data) => {
       this.vehicles = data.results; 
-      this.vehicles$ = this.http.get("https://swapi.dev/api/vehicles/?page=1");
+      this.vehicles$ = this.http.get(this.url);
       this.baseUrl = this.url;
       console.log(this.baseUrl);
     });
   }
 
   search(): void {
-    this.searchQuery = 'https://swapi.dev/api/vehicles/?search=';
-    this.searchQuery += this.query;
-    this.vehicles$ = this.http.get(this.searchQuery);
+    this.filmService.searchVehicles(this.query).subscribe((data) => {
+      this.vehicles = data.result;
+    })
   }
 
   nextPage() {

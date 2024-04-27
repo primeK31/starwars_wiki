@@ -18,9 +18,8 @@ export class SpeciesComponent {
   species$: Observable<any> | undefined;
   query = '';
   page = 1;
-  searchQuery = 'https://swapi.dev/api/species/?search='
   baseUrl = "";
-  url = "https://swapi.dev/api/species/?page=1";
+  url = "https://swapi.tech/api/species/?page=1&limit=10";
   constructor(private filmService: FilmService, private http: HttpClient)
   { }
   ngOnInit():void {
@@ -33,9 +32,9 @@ export class SpeciesComponent {
   }
 
   search(): void {
-    this.searchQuery = 'https://swapi.dev/api/species/?search=';
-    this.searchQuery += this.query;
-    this.species$ = this.http.get(this.searchQuery);
+    this.filmService.searchSpecies(this.query).subscribe((data) => {
+      this.species = data.result;
+    })
   }
 
 

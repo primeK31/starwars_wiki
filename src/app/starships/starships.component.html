@@ -3,11 +3,23 @@
     <input type="text" [(ngModel)]="query" placeholder="Type starship's name">
     <button (click)="search()">Search</button>
 
-    <div *ngIf="starships$ | async as starships">
-        <div *ngFor="let starship of starships.results;">
-            <a [routerLink]="['/starships/', starship.url.substring(32, starship.url.length - 1)]">
-            {{ starship.name }}
-            </a>
+    <div *ngIf="query.length == 0">
+        <div *ngIf="starships$ | async as starships">
+            <div *ngFor="let starship of starships.results">
+                <a [routerLink]="['/starships/', starship.uid]">
+                {{ starship.name }}
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="query.length > 0">
+        <div *ngIf="starships">
+            <div *ngFor="let starship of starships">
+                <a [routerLink]="['/starships/', starship.uid]">
+                {{ starship.properties.name }}
+                </a>
+            </div>
         </div>
     </div>
 

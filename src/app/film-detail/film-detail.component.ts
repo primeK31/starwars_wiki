@@ -27,7 +27,7 @@ export class FilmDetailComponent {
       if (params.get('id')) {
         const postId = Number(params.get('id'));
         this.filmService.getFilmById(postId).subscribe((film) => {
-          this.film = film;
+          this.film = film.result.properties;
           this.getPeople();
           this.getPlanets();
           this.getStarships();
@@ -43,7 +43,7 @@ export class FilmDetailComponent {
     this.film.characters.forEach((characterUrl: string) => {
       this.http.get(characterUrl)
         .subscribe((data: any) => {
-          this.people.push(data);
+          this.people.push(data.result);
         });
       });
   }
@@ -51,7 +51,7 @@ export class FilmDetailComponent {
     this.film.planets.forEach((url: string) => {
       this.http.get(url)
         .subscribe((data: any) => {
-          this.planets.push(data);
+          this.planets.push(data.result);
         });
       });
   }
@@ -59,7 +59,7 @@ export class FilmDetailComponent {
     this.film.starships.forEach((url: string) => {
       this.http.get(url)
         .subscribe((data: any) => {
-          this.starships.push(data);
+          this.starships.push(data.result);
         });
       });
   }
@@ -67,7 +67,7 @@ export class FilmDetailComponent {
     this.film.vehicles.forEach((url: string) => {
       this.http.get(url)
         .subscribe((data: any) => {
-          this.vehicles.push(data);
+          this.vehicles.push(data.result);
         });
       });
   }
@@ -75,7 +75,7 @@ export class FilmDetailComponent {
     this.film.species.forEach((url: string) => {
       this.http.get(url)
         .subscribe((data: any) => {
-          this.species.push(data);
+          this.species.push(data.result);
         });
       });
   }
